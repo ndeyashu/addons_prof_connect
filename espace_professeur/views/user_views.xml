@@ -1,0 +1,16 @@
+<odoo>
+    <record id="view_users_form_custom" model="ir.ui.view">
+        <field name="name">res.users.form.custom</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <!-- Ajoute les champs dans un groupe générique pour commencer -->
+            <xpath expr="//form//sheet//group" position="inside">
+                <group string="Informations supplémentaires">
+                    <field name="school_name" placeholder="Nom de l'école"/>
+                    <field name="city" placeholder="Ville"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

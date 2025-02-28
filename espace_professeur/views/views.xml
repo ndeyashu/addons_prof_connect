@@ -1,0 +1,83 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="res_partner_inherit_form_view_espace_professeur">
+    <field name="name">espace_professeur list</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="arch" type="xml">
+        <!-- Ajout du header correctement dans le formulaire -->
+        <xpath expr="//div[@name='button_box']" position="after">
+            <header>
+                <button name="action_confirm" string="CONFIRMER" type="object" class="oe_highlight"
+                    invisible="state in ('valider', 'annuler')"/>
+                <button name="action_brouillon" string="Retourner à l'état brouillon" type="object" class="oe_highlight"
+                    invisible="state in ('brouillon', 'valider')"/>
+                <button name="action_annuler" string="ANNULER" type="object" class="oe_highlight"
+                    invisible="state == 'annuler'"/>
+                <field name="state" widget="statusbar" readonly="1"/>
+            </header>
+        </xpath>
+
+        <!-- Ajout du champ 'type_profil' après 'name' -->
+        <xpath expr="//field[@name='name']" position="after">
+            <field name="type_profil"/>
+            <field name="specialite"/>
+            <field name="experience"/>
+            <field name="school_name" placeholder="Nom de l'école"/>
+            <field name="city" placeholder="Ville"/>
+<!--            <field name="cv" widget="binary" filename="cv_filename" string="CV"/>-->
+<!--            <field name="cv_filename" invisible="1"/>-->
+        </xpath>
+    </field>
+</record>
+
+
+      <record id="action_res_partner_professeur" model="ir.actions.act_window">
+        <field name="name">Liste des Professeurs</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,form</field>
+<!--        <field name="groups_id" eval="[(4, ref('espace_client.group_espace_client'))]"/>-->
+        <field name="domain">[("type_profil", "=", "professeur"),("state", "=", "valider")]</field>
+    </record>
+
+      <record id="action_res_partner_professeur_valider" model="ir.actions.act_window">
+        <field name="name">Professeurs à valider</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,form</field>
+        <field name="domain">[("type_profil", "=", "professeur"),("state", "=", "brouillon")]</field>
+    </record>
+
+      <record id="action_res_partner_professeur_annuler" model="ir.actions.act_window">
+        <field name="name">Candidature refuser</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,form</field>
+        <field name="domain">[("type_profil", "=", "professeur"),("state", "=", "annuler")]</field>
+    </record>
+
+      <record id="action_res_partner_particulier" model="ir.actions.act_window">
+        <field name="name">Entreprise/Ecole</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,form</field>
+        <field name="domain">[("type_profil", "=", "particulier")]</field>
+    </record>
+
+
+     <menuitem id="menu_espace_professeur_root" name="Espace Professeur" sequence="10"/>
+      <menuitem id="menu_espace_particulier_root" name="Entreprise/Ecole" sequence="10"/>
+
+
+    <!-- actions -->
+    <menuitem name="Liste des professeur" id="espace_professeur.menu_1_list" parent="menu_espace_professeur_root"
+              action="action_res_partner_professeur"/>
+
+      <menuitem name="Professeur à valider" id="espace_professeur.menu_2_list" parent="menu_espace_professeur_root"
+                action="action_res_partner_professeur_valider"/>
+      <menuitem name="Refus de candidature" id="espace_professeur.menu_3_list" parent="menu_espace_professeur_root"
+              action="action_res_partner_professeur_annuler"/>
+      <menuitem name="Entreprise/Ecole" id="espace_professeur.menu_list_particulier" parent="menu_espace_particulier_root"
+              action="action_res_partner_particulier"/>
+
+
+
+  </data>
+</odoo>

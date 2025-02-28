@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="email_alerte_professeur_confirm" model="mail.template">
+            <field name="name">Alerte Confirmation Professeur</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="email_from">noreply@yourdomain.com</field>
+            <field name="subject">Confirmation de votre candidature</field>
+            <field name="email_to">${object.email}</field>
+            <field name="body_html"><![CDATA[
+                <p>Bonjour ${object.name},</p>
+                <p>Nous vous informons que votre candidature en tant que professeur a été confirmée.</p>
+                <p>Merci de vérifier votre espace personnel pour plus de détails.</p>
+                <p>Cordialement,<br/>
+                L'équipe de gestion</p>
+            ]]></field>
+        </record>
+
+    </data>
+</odoo>

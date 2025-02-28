@@ -1,0 +1,32 @@
+<odoo>
+    <template id="custom_signup_page" inherit_id="auth_signup.signup" name="Custom Signup Page">
+        <xpath expr="//form[contains(@class, 'oe_signup_form')]" position="before">
+            <!-- Zone de texte d'introduction personnalisée -->
+            <div class="custom-signup-box">
+                <h2 class="custom-title">Bienvenue sur notre plateforme !</h2>
+                <p class="custom-text">
+                    Inscrivez-vous pour accéder à toutes nos fonctionnalités.
+                </p>
+                <p class="custom-text">
+                    Si vous avez des questions, contactez-nous à
+                    <a href="mailto:support@exemple.com">support@exemple.com</a>.
+                </p>
+            </div>
+        </xpath>
+    </template>
+    <odoo>
+    <template id="signup_fields" inherit_id="auth_signup.fields" name="Auth Signup street form field">
+        <xpath expr="//div[position()=last()-1]" position="before">
+            <div class="form-group field-login">
+                <label for="school_name">Ecole/Entreprise</label>
+                <input type="text" name="school_name" id="school_name" class="form-control form-control-sm"
+                       required="1" placeholder="Nom de l'école"/>
+                <label for="city">Ville</label>
+                <input type="text" name="city" id="city" class="form-control form-control-sm"
+                       required="1" placeholder="Ville"/>
+            </div>
+        </xpath>
+
+    </template>
+</odoo>
+</odoo>

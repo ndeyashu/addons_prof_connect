@@ -1,0 +1,23 @@
+<odoo>
+    <!-- Hériter de la vue signup_form du module auth_signup -->
+    <record id="view_signup_form_custom" model="ir.ui.view">
+        <field name="name">signup form custom</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="auth_signup.signup"/> <!-- Héritage de la vue d'inscription -->
+        <field name="arch" type="xml">
+            <!-- Utilisation de XPath pour modifier la vue et ajouter des champs personnalisés -->
+            <xpath expr="//form[@class='oe_signup_form']" position="inside">
+                <!-- Ajouter le champ "Nom de l'école" -->
+                <div class="form-group">
+                    <label for="school_name">Nom de l'école</label>
+                    <input type="text" name="school_name" class="form-control" required="1"/>
+                </div>
+                <!-- Ajouter le champ "Ville" -->
+                <div class="form-group">
+                    <label for="city">Ville</label>
+                    <input type="text" name="city" class="form-control" required="1"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
