@@ -17,16 +17,41 @@
                 <field name="state" widget="statusbar" readonly="1"/>
             </header>
         </xpath>
-
-        <!-- Ajout du champ 'type_profil' après 'name' -->
         <xpath expr="//field[@name='name']" position="after">
             <field name="type_profil"/>
-            <field name="specialite"/>
-            <field name="experience"/>
-            <field name="school_name" placeholder="Nom de l'école"/>
-            <field name="city" placeholder="Ville"/>
 <!--            <field name="cv" widget="binary" filename="cv_filename" string="CV"/>-->
 <!--            <field name="cv_filename" invisible="1"/>-->
+        </xpath>
+        <xpath expr="//field[@name='vat']" position="after">
+            <field name="specialite"/>
+            <field name="experience"/>
+            <field name="school_name" placeholder="Nom de l'école" invisible="type_profil in ('professeur')"/>
+        </xpath>
+        <xpath expr="//div/field[@name='street']" position="attributes">
+                <attribute name='invisible'>1</attribute>
+        </xpath>
+        <xpath expr="//div/field[@name='street2']" position="attributes">
+            <attribute name='invisible'>1</attribute>
+        </xpath>
+        <xpath expr="//field[@name='vat']" position="attributes">
+            <attribute name='invisible'>1</attribute>
+        </xpath>
+        <xpath expr="//field[@name='company_type']" position="attributes">
+            <attribute name='invisible'>1</attribute>
+        </xpath>
+        <xpath expr="//div/field[@name='zip']" position="attributes">
+            <attribute name='invisible'>1</attribute>
+        </xpath>
+
+        <xpath expr="//div/field[@name='state_id']" position="attributes">
+            <attribute name='invisible'>1</attribute>
+        </xpath>
+
+        <xpath expr="//page[@name='sales_purchases']" position="attributes">
+            <attribute name='invisible'>1</attribute>
+        </xpath>
+        <xpath expr="//page[@name='contact_addresses']" position="attributes">
+            <attribute name='invisible'>1</attribute>
         </xpath>
     </field>
 </record>
