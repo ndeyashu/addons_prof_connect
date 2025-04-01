@@ -14,8 +14,7 @@
             </div>
         </xpath>
     </template>
-    <odoo>
-    <template id="signup_fields" inherit_id="auth_signup.fields" name="Auth Signup street form field">
+    <!--<template id="signup_fields" inherit_id="auth_signup.fields" name="Auth Signup street form field">
         <xpath expr="//div[position()=last()-1]" position="before">
             <div class="form-group field-login">
                 <label for="school_name">Ecole/Entreprise</label>
@@ -27,6 +26,43 @@
             </div>
         </xpath>
 
+    </template>-->
+    <!--<template id="template_professeurs_list" name="Liste des Professeurs">
+        <t t-call="website.layout">
+            <div class="container">
+                <h2>Liste des Professeurs</h2>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Email</th>
+                            <th>Téléphone</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="professeurs" t-as="prof">
+                            <tr>
+                                <td><t t-esc="prof.name"/></td>
+                                <td><t t-esc="prof.email or '-'"/></td>
+                                <td><t t-esc="prof.phone or '-'"/></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
     </template>
-</odoo>
+    <template id="portal_professeurs_menu" inherit_id="portal.some_existing_id">
+        <xpath expr="//div[@id='o_portal_my_home']" position="inside">
+            <a class="btn btn-primary mt-2" href="/my/professeurs">Voir les Professeurs</a>
+        </xpath>
+    </template>-->
+
+    <!--<template id="portal_professeurs_menu" inherit_id="portal.portal_my_home">
+        <xpath expr="//div[contains(@id, 'o_portal_my_home')]" position="inside">
+            <a class="btn btn-primary mt-2" href="/my/professeurs">Voir les Professeurs</a>
+        </xpath>
+    </template>-->
+
+
 </odoo>

@@ -1,0 +1,10 @@
+<odoo>
+    <data>
+        <!-- Création du groupe 'Professeurs Connectés' -->
+        <record id="group_entreprise_connectes" model="res.groups">
+            <field name="name">Entreprise Connectés</field>
+            <field name="category_id" ref="base.module_category_administration"/>
+        </record>
+
+    </data>
+</odoo>

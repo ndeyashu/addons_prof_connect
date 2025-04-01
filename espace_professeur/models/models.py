@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api
+from odoo import models, fields, api, exceptions
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -24,18 +24,14 @@ class Partner(models.Model):
     cv = fields.Binary(string='CV')
     cv_filename = fields.Char(string='CV Filename', compute='_compute_cv_filename', store=True)
     state = fields.Selection(STATES_PROFESSEUR, index=True, string='State', default='brouillon')
-    experience = fields.Float(string="nombre d'année d'experience")
+    experience = fields.Integer(string="Nombre d'années d'expérience")
     school_name = fields.Char(string="Nom de l'école")
     city = fields.Char(string="Ville")
 
     @api.depends('cv')
     def _compute_cv_filename(self):
         for record in self:
-            if record.cv:
-                # Récupérer le nom du fichier à partir du champ binary (cv)
-                record.cv_filename = 'CV'
-            else:
-                record.cv_filename = False
+            record.cv_filename = 'CV' if record.cv else False
 
     def action_brouillon(self):
         self.state = 'brouillon'
@@ -49,3 +45,4 @@ class Partner(models.Model):
         if self.ids:
             self.env['mail.template'].browse(template.id).sudo().send_mail(self.ids[0], force_send=True)
             _logger.warning(f"Pas d'email défini pour {self.email}")
+

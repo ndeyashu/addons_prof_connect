@@ -20,11 +20,12 @@ Long description of module's purpose
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','mail','auth_signup'],
+    'depends': ['base','mail','auth_signup','portal', 'website','account'],
 
     # always loaded
     'data': [
         #'security/ir.model.access.csv',
+        'security/groupe.xml',
         'views/views.xml',
         'data/email_template.xml',
         'views/templates.xml',
